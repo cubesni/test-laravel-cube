@@ -1,4 +1,6 @@
-var getAPI = fetch("http://localhost/test-laravel-cube/public/api/get_users")
+var getAPI = fetch(
+    "http://test-laravel-cube.herokuapp.com/public/api/get_users"
+)
     .then((response) => response.json())
     .then((data) => {
         var username = [];
