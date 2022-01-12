@@ -1,23 +1,32 @@
-var options = {
-    chart: {
-        type: "bar",
-    },
-    plotOptions: {
-        bar: {
-            distributed: true,
-        },
-    },
-    series: [
-        {
-            name: "sales",
-            data: [30, 40, 45, 50, 49, 60, 70, 91, 125],
-        },
-    ],
-    xaxis: {
-        categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999],
-    },
-};
-
-var chart = new ApexCharts(document.querySelector("#chart"), options);
-
-chart.render();
+var getAPI = fetch("http://localhost/test-laravel-cube/public/api/get_users")
+    .then((response) => response.json())
+    .then((data) => {
+        var username = [];
+        var count = Array.from(Array(data.length).keys());
+        count.fill(100, 0, data.length);
+        data.forEach((data) => {
+            username.push(data["name"]);
+            const email = data["email"];
+        });
+        var options = {
+            chart: {
+                type: "bar",
+            },
+            plotOptions: {
+                bar: {
+                    distributed: true,
+                },
+            },
+            series: [
+                {
+                    name: "sales",
+                    data: count,
+                },
+            ],
+            xaxis: {
+                categories: username,
+            },
+        };
+        var chart = new ApexCharts(document.querySelector("#chart"), options);
+        chart.render();
+    });

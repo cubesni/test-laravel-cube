@@ -16,3 +16,7 @@ Route::get('/users', 'UserController@index')->name('users_chart');
 Route::get('/users_2', function () {
     return view('users_chart_2');
 });
+
+
+///// API Routes
+Route::get('/api/get_users', 'UserApiController@showUser');
